@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -13,6 +14,7 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 @RunWith(Parameterized.class)
 public class CreateOrderTest extends BaseTest {
     BaseHttpClient baseHttpClient = new BaseHttpClient();
+    static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     private final String firstName;
     private final String lastName;
@@ -51,7 +53,7 @@ public class CreateOrderTest extends BaseTest {
                         faker.number().digits(1),
                         faker.phoneNumber().phoneNumber(),
                         new Random().nextInt(10) + 1,
-                        faker.date().future(3, TimeUnit.DAYS).toString(),
+                        sdf.format(faker.date().future(3, TimeUnit.DAYS)),
                         faker.lebowski().quote(),
                         new String[]{"GREY"}},
                 {faker.name().firstName(),
@@ -60,7 +62,7 @@ public class CreateOrderTest extends BaseTest {
                         faker.number().digits(1),
                         faker.phoneNumber().phoneNumber(),
                         new Random().nextInt(10) + 1,
-                        faker.date().future(3, TimeUnit.DAYS).toString(),
+                        sdf.format(faker.date().future(3, TimeUnit.DAYS)),
                         faker.gameOfThrones().quote(),
                         new String[]{"BLACK", "GREY"}},
                 {faker.name().firstName(),
@@ -69,7 +71,7 @@ public class CreateOrderTest extends BaseTest {
                         faker.number().digits(1),
                         faker.phoneNumber().phoneNumber(),
                         new Random().nextInt(10) + 1,
-                        faker.date().future(3, TimeUnit.DAYS).toString(),
+                        sdf.format(faker.date().future(3, TimeUnit.DAYS)),
                         faker.lorem().sentence(), new String[]{""}}
         };
     }
